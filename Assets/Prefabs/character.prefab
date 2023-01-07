@@ -129,11 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e530946d2059d9d4d9d4c9bc75651b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerID: 0
+  Hp: 10
   inputHandler: {fileID: 248149707998081212}
-  rb: {fileID: 248149707998081218}
   bullet: {fileID: 6238588105793749888, guid: a39bbb43e42f3d44483f5ff6df7f336d, type: 3}
-  bulletspeed: 100
-  playerspeed: 10
+  playerspeed: 15
 --- !u!114 &248149707998081212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,11 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2682fe2d999df164cb8841a17789abe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystickXAxisNameList:
-  - x 1
-  joystickYAxisNameList:
-  - y 1
-  joystickFireKeyCodeList: 4b010000
 --- !u!1 &248149708797390205
 GameObject:
   m_ObjectHideFlags: 0

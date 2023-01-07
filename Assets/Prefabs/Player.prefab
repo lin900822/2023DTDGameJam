@@ -254,9 +254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e530946d2059d9d4d9d4c9bc75651b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerID: 0
+  Hp: 10
   inputHandler: {fileID: 6935140433613618802}
   bullet: {fileID: 6238588105793749888, guid: a39bbb43e42f3d44483f5ff6df7f336d, type: 3}
   playerspeed: 10
+  firecd: 0.25
 --- !u!114 &6935140433613618802
 MonoBehaviour:
   m_ObjectHideFlags: 0

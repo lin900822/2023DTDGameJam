@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dde285a639c4848aa6afc6c6777c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  G: 66700
-  speed: 60
+  G: 667000
+  speed: 250
+  virtualZ: 150
 --- !u!96 &6238588105793749903
 TrailRenderer:
   serializedVersion: 2
@@ -91,7 +92,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 0.1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -197,9 +198,9 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.0000002
+  m_Radius: 1.5
