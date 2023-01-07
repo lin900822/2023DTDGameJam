@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class BulletCon : MonoBehaviour
 {
@@ -37,6 +38,10 @@ public class BulletCon : MonoBehaviour
             if (collider.TryGetComponent<characterMovement>(out var characterMovement))
             {
                 if(characterMovement.PlayerID == OwnerID) return;
+            }
+            if (collider.TryGetComponent<Light2D>(out var light))
+            {
+                return;
             }
             Destroy(GetComponent<Rigidbody2D>());
             Destroy(GetComponent<Collider2D>());
