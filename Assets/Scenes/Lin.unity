@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1799928368}
-  playerTransformList:
+  targets:
   - {fileID: 6935140432831036079}
   - {fileID: 1168983026}
   - {fileID: 514100638}

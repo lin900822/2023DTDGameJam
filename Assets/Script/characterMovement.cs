@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class characterMovement : MonoBehaviour
@@ -21,6 +22,8 @@ public class characterMovement : MonoBehaviour
 
     [SerializeField] float firecd = 0.5f;
 
+    [SerializeField] private ParticleSystem hitEffect = null;
+    
     float timer = 0;
 
     void Start()
@@ -44,16 +47,21 @@ public class characterMovement : MonoBehaviour
         timer += Time.deltaTime;
         if (inputHandler.GetFired(PlayerID) && timer >= firecd)
         {
-            GameObject bulletClone = Instantiate(bullet, this.transform.position + transform.right * 2, transform.rotation);
+            GameObject bulletClone = Instantiate(bullet, this.transform.position, transform.rotation);
+            bulletClone.GetComponent<BulletCon>().OwnerID = PlayerID;
             timer = 0;
         }
         myrigidbody.velocity = move * playerspeed;
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.GetComponent<BulletCon>())
+        if (collider.TryGetComponent<BulletCon>(out var bulletCon))
         {
+            if (bulletCon.OwnerID == PlayerID) return;
+            
             Hp--;
+            Instantiate(hitEffect, transform.position, quaternion.identity);
+            
         }
     }
 }

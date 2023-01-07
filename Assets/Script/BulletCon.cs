@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BulletCon : MonoBehaviour
 {
+    [HideInInspector]
+    public int OwnerID;
+    
     public float G = 66700f;
     [SerializeField]
     float speed = 10f;
@@ -29,7 +32,12 @@ public class BulletCon : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collider){
-        if(collider.tag!="gravity"){
+        if(collider.tag != "gravity"){
+
+            if (collider.TryGetComponent<characterMovement>(out var characterMovement))
+            {
+                if(characterMovement.PlayerID == OwnerID) return;
+            }
             Destroy(GetComponent<Rigidbody2D>());
             Destroy(GetComponent<Collider2D>());
         }
