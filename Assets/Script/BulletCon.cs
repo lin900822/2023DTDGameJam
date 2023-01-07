@@ -13,7 +13,7 @@ public class BulletCon : MonoBehaviour
     void Start()
     {
         this.GetComponent<Rigidbody2D>().velocity = transform.right * speed;
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 1);
     }
     
     private void OnTriggerStay2D(Collider2D collider)
@@ -26,5 +26,12 @@ public class BulletCon : MonoBehaviour
     float GetRadius(Vector2 first, Vector2 second)
     {
         return (Mathf.Sqrt((first.x - second.x) * (first.x - second.x) + (first.y - second.y) * (first.y - second.y) + virtualZ));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider){
+        if(collider.tag!="gravity"){
+            Destroy(GetComponent<Rigidbody2D>());
+            Destroy(GetComponent<Collider2D>());
+        }
     }
 }
