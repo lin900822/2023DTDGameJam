@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5522579046180109577}
   - component: {fileID: 5522579046180109576}
   - component: {fileID: 5522579046180109591}
+  - component: {fileID: 8587920556902497049}
   m_Layer: 0
   m_Name: winEffect
   m_TagString: Untagged
@@ -4882,3 +4883,16 @@ SortingGroup:
   m_SortingLayerID: -837721119
   m_SortingLayer: 3
   m_SortingOrder: 2
+--- !u!114 &8587920556902497049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522579046180109590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ce2795ba03d01040b4a90041769bb12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 5

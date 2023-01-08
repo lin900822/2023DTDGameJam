@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] winnerPanel = null;
 
     [SerializeField] private Image[] hps = null;
+
+    private bool isGameOver = false;
+    private bool currentGameOver = false;
+    private bool lastGameOver = false;
     
     private void Update()
     {
@@ -18,15 +23,23 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 winnerPanel[0].SetActive(true);
+
+                currentGameOver = true;
                 break;
             case 1:
                 winnerPanel[1].SetActive(true);
+                
+                currentGameOver = true;
                 break;
             case 2:
                 winnerPanel[2].SetActive(true);
+                
+                currentGameOver = true;
                 break;
             case 3:
                 winnerPanel[3].SetActive(true);
+
+                currentGameOver = true;
                 break;
             default:
                 
@@ -40,6 +53,18 @@ public class GameManager : MonoBehaviour
 
             hp.fillAmount = ((float)player.Hp / 10);
         }
+
+        if (lastGameOver != currentGameOver)
+        {
+            Invoke(nameof(SetGameOver), 3f);
+        }
+
+        if (isGameOver)
+        {
+            GameOver();
+        }
+        
+        lastGameOver = currentGameOver;
     }
 
     private int GetWinner()
@@ -66,5 +91,18 @@ public class GameManager : MonoBehaviour
         }
 
         return -1;
+    }
+
+    private void SetGameOver()
+    {
+        isGameOver = true;
+    }
+    
+    private void GameOver()
+    {
+        if (Input.anyKey)
+        {
+            SceneManager.LoadScene("New GamePlay");
+        }
     }
 }

@@ -23,7 +23,8 @@ public class characterMovement : MonoBehaviour
     [SerializeField] float firecd = 0.5f;
 
     [SerializeField] private ParticleSystem hitEffect = null;
-
+    [SerializeField] private ParticleSystem deathEffect = null;
+    
     [SerializeField] private Transform weaponTrans = null;
     
     float timer = 0;
@@ -37,6 +38,7 @@ public class characterMovement : MonoBehaviour
 
         if (Hp <= 0)
         {
+            Instantiate(deathEffect, transform.position, Quaternion.Euler(180, 0 ,0));
             Destroy(gameObject);
         }
         Vector2 moveinput = inputHandler.GetLeftStickAxis(PlayerID);

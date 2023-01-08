@@ -141,8 +141,9 @@ GameObject:
   - component: {fileID: 6238588105793749903}
   - component: {fileID: -5110496353546708367}
   - component: {fileID: 6397201380659735950}
+  - component: {fileID: 6462496587520711332}
   m_Layer: 6
-  m_Name: bullet
+  m_Name: bullet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,9 +177,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3dde285a639c4848aa6afc6c6777c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OwnerID: 0
   G: 667000
   speed: 100
   virtualZ: 300
+  effect: {fileID: 7072560797892298593, guid: b7248abe99c4a9e4dba55b09815a12bb, type: 3}
 --- !u!96 &6238588105793749903
 TrailRenderer:
   serializedVersion: 2
@@ -200,7 +203,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 465d8cb9c1379dd449fd3854ef42a23e, type: 2}
+  - {fileID: 2100000, guid: 3ab6ac8db21050b49955820763eb0127, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,3 +336,14 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!210 &6462496587520711332
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6238588105793749888}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

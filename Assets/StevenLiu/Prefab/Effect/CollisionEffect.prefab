@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7072560797892298593}
   - component: {fileID: 5047870866414058388}
   - component: {fileID: 4364300620937807606}
+  - component: {fileID: 691618757253023539}
   m_Layer: 0
   m_Name: CollisionEffect
   m_TagString: Untagged
@@ -4884,6 +4885,19 @@ SortingGroup:
   m_SortingLayerID: -837721119
   m_SortingLayer: 3
   m_SortingOrder: 1
+--- !u!114 &691618757253023539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173054413770538003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ce2795ba03d01040b4a90041769bb12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 3
 --- !u!1 &4160222083773048417
 GameObject:
   m_ObjectHideFlags: 0

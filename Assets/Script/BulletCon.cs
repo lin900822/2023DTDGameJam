@@ -13,6 +13,8 @@ public class BulletCon : MonoBehaviour
     float speed = 10f;
 
     [SerializeField] private float virtualZ = 225f;
+
+    [SerializeField] private ParticleSystem effect = null;
     
     void Start()
     {
@@ -22,7 +24,7 @@ public class BulletCon : MonoBehaviour
     
     private void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.tag == "gravity")
+        if(collider.CompareTag("gravity"))
         {
             this.GetComponent<Rigidbody2D>().AddForce(G / Mathf.Pow(GetRadius(this.transform.position, collider.transform.position), 2) * ((collider.transform.position - this.transform.position) / GetRadius(this.transform.position, collider.transform.position)));
         }
@@ -33,16 +35,20 @@ public class BulletCon : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collider){
-        if(collider.tag != "gravity"){
-
+        if(!collider.CompareTag("gravity")){
             if (collider.TryGetComponent<characterMovement>(out var characterMovement))
             {
-                if(characterMovement.PlayerID == OwnerID) return;
+                if (characterMovement.PlayerID == OwnerID) return;
             }
-            if (collider.TryGetComponent<Light2D>(out var light))
+            else if (collider.TryGetComponent<Light2D>(out var light))
             {
                 return;
             }
+            else
+            {
+                Instantiate(effect, transform);
+            }
+            
             Destroy(GetComponent<Rigidbody2D>());
             Destroy(GetComponent<Collider2D>());
         }
