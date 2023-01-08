@@ -10,6 +10,8 @@ public class characterMovement : MonoBehaviour
 
     public int Hp = 10;
 
+    public bool isOP = false;
+
     public InputHandler inputHandler;
 
     public GameObject bullet;
@@ -22,23 +24,29 @@ public class characterMovement : MonoBehaviour
 
     [SerializeField] float firecd = 0.5f;
 
+    [SerializeField] float skillcd = 8f;
+
+    [SerializeField] float skillduration = 3f;
+
     [SerializeField] private ParticleSystem hitEffect = null;
     [SerializeField] private ParticleSystem deathEffect = null;
-    
-    [SerializeField] private Transform weaponTrans = null;
-    
-    float timer = 0;
 
+    [SerializeField] private Transform weaponTrans = null;
+
+    float firetimer = 0;
+    float skilltimer = 8f;
+    float isOPtimer = 0;
     void Start()
     {
+        //skilltimer = 8f;
         myrigidbody = GetComponent<Rigidbody2D>();
+        isOPtimer = skillduration;
     }
     void Update()
     {
-
         if (Hp <= 0)
         {
-            Instantiate(deathEffect, transform.position, Quaternion.Euler(180, 0 ,0));
+            Instantiate(deathEffect, transform.position, Quaternion.Euler(180, 0, 0));
             Destroy(gameObject);
         }
         Vector2 moveinput = inputHandler.GetLeftStickAxis(PlayerID);
@@ -48,12 +56,28 @@ public class characterMovement : MonoBehaviour
         {
             //transform.right = new Vector2(rotateinput.x, rotateinput.y);
         }
-        timer += Time.deltaTime;
-        if (inputHandler.GetFired(PlayerID) && timer >= firecd)
+
+        firetimer += Time.deltaTime;
+        skilltimer += Time.deltaTime;
+        isOPtimer += Time.deltaTime;
+
+        if (inputHandler.GetSkilled(PlayerID) && skilltimer >= skillcd)
+        {
+            isOP = true;
+            Debug.Log("skillTriggered");
+            GetComponent<PlayerAlphaController>().SetHightlighted(1f, skillduration);
+            skilltimer = 0;
+            isOPtimer = 0;
+            firetimer = firecd - skillduration;
+        }
+        if(isOP == true && isOPtimer >= skillduration){
+            isOP = false;
+        }
+        if (inputHandler.GetFired(PlayerID) && firetimer >= firecd)
         {
             GameObject bulletClone = Instantiate(bullet, weaponTrans.position, weaponTrans.rotation);
             bulletClone.GetComponent<BulletCon>().OwnerID = PlayerID;
-            timer = 0;
+            firetimer = 0;
         }
         myrigidbody.velocity = move * playerspeed;
     }
@@ -62,10 +86,15 @@ public class characterMovement : MonoBehaviour
         if (collider.TryGetComponent<BulletCon>(out var bulletCon))
         {
             if (bulletCon.OwnerID == PlayerID) return;
-            
-            Hp--;
+
+            if(isOP == false){
+                Hp--;
+            }
+
             Instantiate(hitEffect, transform.position, quaternion.identity);
-            
+
         }
     }
+
+
 }
