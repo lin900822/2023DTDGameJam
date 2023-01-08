@@ -14,10 +14,30 @@ public class PlayerAlphaController : MonoBehaviour
     
     private Collider2D[] lights = new Collider2D[10];
 
+    private bool isHightlighted = false;
+    private float hightlightedAlpha = 1f;
+    private float hightlightedDuration = 1f;
+
+    private float hightlightedTime = 0f;
+    
     private void Update()
     {
         GetLights();
-        SetAlpha(1f - GetMinDistanceBetweenLight() / detectRadius);
+
+        if (isHightlighted)
+        {
+            if (Time.time - hightlightedTime >= hightlightedDuration)
+            {
+                isHightlighted = false;
+            }
+
+            SetAlpha(hightlightedAlpha);
+        }
+        else
+        {
+            SetAlpha(1f - GetMinDistanceBetweenLight() / detectRadius);
+        }
+       
     }
 
     private float GetMinDistanceBetweenLight()
@@ -56,5 +76,14 @@ public class PlayerAlphaController : MonoBehaviour
     {
         playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, alpha);
         weaponSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, alpha);
+    }
+
+    public void SetHightlighted(float alpha, float duration)
+    {
+        hightlightedTime = Time.time;
+        isHightlighted = true;
+
+        hightlightedAlpha = alpha;
+        hightlightedDuration = duration;
     }
 }
