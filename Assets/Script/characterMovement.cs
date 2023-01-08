@@ -23,6 +23,8 @@ public class characterMovement : MonoBehaviour
     [SerializeField] float firecd = 0.5f;
 
     [SerializeField] private ParticleSystem hitEffect = null;
+
+    [SerializeField] private Transform weaponTrans = null;
     
     float timer = 0;
 
@@ -42,12 +44,12 @@ public class characterMovement : MonoBehaviour
         Vector2 rotateinput = inputHandler.GetRightStickAxis(PlayerID);
         if (rotateinput != Vector2.zero)
         {
-            transform.right = new Vector2(rotateinput.x, rotateinput.y);
+            //transform.right = new Vector2(rotateinput.x, rotateinput.y);
         }
         timer += Time.deltaTime;
         if (inputHandler.GetFired(PlayerID) && timer >= firecd)
         {
-            GameObject bulletClone = Instantiate(bullet, this.transform.position, transform.rotation);
+            GameObject bulletClone = Instantiate(bullet, weaponTrans.position, weaponTrans.rotation);
             bulletClone.GetComponent<BulletCon>().OwnerID = PlayerID;
             timer = 0;
         }

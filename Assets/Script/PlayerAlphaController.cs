@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerAlphaController : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer playerSprite = null;
+    [SerializeField] private SpriteRenderer weaponSprite = null;
 
     [SerializeField] private float detectRadius = 5f;
 
@@ -54,5 +55,6 @@ public class PlayerAlphaController : MonoBehaviour
     private void SetAlpha(float alpha)
     {
         playerSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, alpha);
+        weaponSprite.color = new Color(playerSprite.color.r, playerSprite.color.g, playerSprite.color.b, alpha);
     }
 }

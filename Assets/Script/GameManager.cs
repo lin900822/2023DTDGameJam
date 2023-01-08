@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private characterMovement[] players = null;
 
     [SerializeField] private GameObject[] winnerPanel = null;
+
+    [SerializeField] private Image[] hps = null;
     
     private void Update()
     {
@@ -28,6 +31,14 @@ public class GameManager : MonoBehaviour
             default:
                 
                 break;
+        }
+
+        for (var i = 0; i < hps.Length; i++)
+        {
+            var hp = hps[i];
+            var player = players[i];
+
+            hp.fillAmount = ((float)player.Hp / 10);
         }
     }
 
